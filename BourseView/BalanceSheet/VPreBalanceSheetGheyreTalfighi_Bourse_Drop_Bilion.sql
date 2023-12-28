@@ -1,9 +1,3 @@
-
-
-
-
-
-
 CREATE view [dbo].[VPreBalanceSheetGheyreTalfighi_Bourse_Drop_Bilion]
 as
 select distinct hc.InstrumentId,hc.symbolFA,
@@ -82,13 +76,15 @@ cast(hc.['جمع بدهیهای جاری و غیر جاری']/10000000000 as dec
 	from BalanceSheetGheyreTalfighiCategurbalancesheet_bourse hc
 	left join BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse cf on hc.instrumentId = cf.instrumentId 
 	--left join BalanceSheetGheyreTalfighiCategurCashflow_Bourse caf on hc.instrumentId = caf.instrumentId 
-	where not exists(select 1 from BalanceSheetGheyreTalfighiCategurbalancesheet_bourse h where hc.instrumentId = h.instrumentId and h.day > hc.day)
+	where not exists(select 1 from BalanceSheetGheyreTalfighiCategurbalancesheet_bourse h where hc.instrumentId = h.instrumentId and h.[تاریخ انتشار] > hc.[تاریخ انتشار])
+	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurbalancesheet_bourse h where hc.instrumentId = h.instrumentId and h.[سال مالی] > hc.[سال مالی])
 	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurbalancesheet_bourse h where hc.instrumentId = h.instrumentId and h.createdate > hc.createdate)
 	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurbalancesheet_bourse h where hc.instrumentId = h.instrumentId and h.[تاریخ انتشار] > hc.[تاریخ انتشار])
 	and cast(hc.[تاریخ انتشار] as date) > dateadd(day, -365, getdate()) and
-	not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse h where cf.instrumentId = h.instrumentId and h.day > cf.day)
+	not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse h where cf.instrumentId = h.instrumentId and h.[تاریخ انتشار] > cf.[تاریخ انتشار])
 	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse h where cf.instrumentId = h.instrumentId and h.createdate > cf.createdate)
 	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse h where cf.instrumentId = h.instrumentId and h.[تاریخ انتشار] > cf.[تاریخ انتشار])
+	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse h where cf.instrumentId = h.instrumentId and h.[سال مالی] > cf.[سال مالی])
 	and cast(cf.[تاریخ انتشار] as date) > dateadd(day, -365, getdate())
 	--and hc.instrumentid in (select ticker from vcompany)
 	--and cf.instrumentid in (select ticker from vcompany)

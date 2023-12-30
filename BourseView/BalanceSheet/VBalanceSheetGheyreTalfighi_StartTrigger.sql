@@ -42,6 +42,7 @@ BEGIN
 	, ['ذخیره ریسک‌های منقضی نشده']
 	, c.nameFa [نام کامل]
 	, ['سود (زیان) خالص']
+	, ['داراییهای نامشهود']
 	into [VBalanceSheetGheyreTalfighi]
 	from [dbo].[VBalanceSheet_GheyreTalfighi_Talfighi_new] b
 	left join vCompany c on c.ticker = b.instrumentId	

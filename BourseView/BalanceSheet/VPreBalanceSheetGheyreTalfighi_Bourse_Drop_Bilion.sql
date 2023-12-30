@@ -1,5 +1,6 @@
 
 
+
 CREATE view [dbo].[VPreBalanceSheetGheyreTalfighi_Bourse_Drop_Bilion]
 as
 select distinct hc.InstrumentId,hc.symbolFA,
@@ -84,6 +85,7 @@ cast(hc.['جمع بدهیهای جاری و غیر جاری']/10000000000 as dec
 , cast(hc.['سایر ذخایر فنی'] /10000000000 as decimal(20,0)) ['سایر ذخایر فنی']
 , cast(hc.['ذخیره ریسک‌های منقضی نشده'] /10000000000 as decimal(20,0)) ['ذخیره ریسک‌های منقضی نشده']
 , cast(cf.['سود (زیان) خالص']/10000000000 as decimal(20,0)) ['سود (زیان) خالص']
+, cast(hc.['داراییهای نامشهود']/10000000000 as decimal(20,0)) ['داراییهای نامشهود']
 
 	from BalanceSheetGheyreTalfighiCategurbalancesheet_bourse hc
 	left join BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse cf on hc.instrumentId = cf.instrumentId 

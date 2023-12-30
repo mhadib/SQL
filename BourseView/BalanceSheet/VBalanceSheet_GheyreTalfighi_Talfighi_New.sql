@@ -5,6 +5,7 @@
 
 
 
+
 CREATE   view [dbo].[VBalanceSheet_GheyreTalfighi_Talfighi_New]
 --SELECT * from PreBalanceSheetGheyreTalfighi where InstrumentId = N'IRO1APPE0001'
 as 
@@ -179,5 +180,6 @@ isnull(case when cte2.[طلب از بازار به فروش]=0 then null else ct
 ,cte2.['سایر ذخایر فنی']
 ,cte2.['ذخیره ریسک‌های منقضی نشده']
 ,cte2.['سود (زیان) خالص']
+,cte2.['داراییهای نامشهود']
 from cte2
 left join PreBalanceSheetGheyreTalfighi v on cte2.instrumentid = v.InstrumentId

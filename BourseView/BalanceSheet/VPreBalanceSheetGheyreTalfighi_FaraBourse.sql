@@ -206,7 +206,8 @@ cte.['سود (زیان) پایه هر سهم ناشی از عملیات در ح�
 , cte.['سایر ذخایر فنی']
 , cte.['ذخیره ریسک‌های منقضی نشده']
 , cte.['سود (زیان) خالص']
-  FROM CTE 
+, cte.['داراییهای نامشهود']
+FROM CTE 
 --join cteSums on 1 = 1
 left join ForConvert i on cte.InstrumentId = i.InstrumentId
 left join VChartayi v on cte.InstrumentId = v.instrumentId

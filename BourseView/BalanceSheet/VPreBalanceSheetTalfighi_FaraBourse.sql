@@ -142,6 +142,7 @@ end )/[ماه مالی]*12) as decimal(30,4)) [سود خالص تعدیل شده
 ,null ['سایر ذخایر فنی']
 ,null ['ذخیره ریسک‌های منقضی نشده']
 ,['سود (زیان) خالص']
+,['داراییهای نامشهود']
 from VPreBalanceSheetTalfighi_faraBourse_Drop_Bilion b
 left join ForConvert i on b.InstrumentId = i.InstrumentId
 left join VChartayi v on b.InstrumentId = v.instrumentId

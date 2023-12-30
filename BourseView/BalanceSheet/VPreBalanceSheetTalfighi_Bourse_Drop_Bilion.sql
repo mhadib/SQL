@@ -1,4 +1,5 @@
 
+
 --select distinct from [dbo].[VPreBalanceSheetTalfighi_Bourse_Drop_Bilion]
 CREATE     view [dbo].[VPreBalanceSheetTalfighi_Bourse_Drop_Bilion]
 	as
@@ -117,6 +118,7 @@ CREATE     view [dbo].[VPreBalanceSheetTalfighi_Bourse_Drop_Bilion]
 ,cast(hc.['ذخیره مزایای پایان خدمت']/10000000000 as decimal(20,0)) ['ذخیره مزایای پایان خدمت']
 ,cast(hc.['ذخایر و سایر بدهی ها']/10000000000 as decimal(20,0)) ['ذخایر و سایر بدهی ها']
 ,cast(ics.['سود (زیان) خالص']/10000000000 as decimal(20,0)) ['سود (زیان) خالص']
+,cast(hc.['داراییهای نامشهود']/10000000000 as decimal(20,0)) ['داراییهای نامشهود']
 
 	from BalanceSheetTalfighiCategurbalancesheet_Bourse hc
 	join BalanceSheetTalfighiCategurincomestatement_Bourse ics on hc.instrumentId = ics.instrumentId

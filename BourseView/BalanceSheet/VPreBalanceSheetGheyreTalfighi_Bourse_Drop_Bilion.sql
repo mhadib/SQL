@@ -1,3 +1,5 @@
+
+
 CREATE view [dbo].[VPreBalanceSheetGheyreTalfighi_Bourse_Drop_Bilion]
 as
 select distinct hc.InstrumentId,hc.symbolFA,
@@ -72,7 +74,17 @@ cast(hc.['جمع بدهیهای جاری و غیر جاری']/10000000000 as dec
 ,cast(hc.['ذخیره مزایای پایان خدمت']/10000000000 as decimal(20,0)) ['ذخیره مزایای پایان خدمت']
 ,cast(hc.['ذخایر و سایر بدهی ها']/10000000000 as decimal(20,0)) ['ذخایر و سایر بدهی ها']
 --cast((['جمع بدهیهای جاری'] / ((['فروش']/[سال مالی]*12)+0.00000001))/10000000000 as decimal(30,8))[نسبت بدهی به فروش]
- 
+, cast(hc.['بدهی بابت بیمه عمر و مدیریت سرمایه'] /10000000000 as decimal(20,0)) ['بدهی بابت بیمه عمر و مدیریت سرمایه']
+, cast(hc.['مطالبات از بیمه گران و بیمه‌گران اتکایی'] /10000000000 as decimal(20,0)) ['مطالبات از بیمه گران و بیمه‌گران اتکایی']
+, cast(hc.['مطالبات از بیمه‌گذاران و نمایندگان'] /10000000000 as decimal(20,0)) ['مطالبات از بیمه‌گذاران و نمایندگان']
+, cast(hc.['سهم بیمه گران اتکایی از ذخایر فنی'] /10000000000 as decimal(20,0)) ['سهم بیمه گران اتکایی از ذخایر فنی']
+, cast(hc.['بدهی به بیمه‌گذاران و نمایندگان'] /10000000000 as decimal(20,0)) ['بدهی به بیمه‌گذاران و نمایندگان']
+, cast(hc.['بدهی به بیمه‌گران و بیمه‌گران اتکایی'] /10000000000 as decimal(20,0)) ['بدهی به بیمه‌گران و بیمه‌گران اتکایی']
+, cast(hc.['ذخیره خسارت معوق '] /10000000000 as decimal(20,0)) ['ذخیره خسارت معوق ']
+, cast(hc.['سایر ذخایر فنی'] /10000000000 as decimal(20,0)) ['سایر ذخایر فنی']
+, cast(hc.['ذخیره ریسک‌های منقضی نشده'] /10000000000 as decimal(20,0)) ['ذخیره ریسک‌های منقضی نشده']
+, cast(cf.['سود (زیان) خالص']/10000000000 as decimal(20,0)) ['سود (زیان) خالص']
+
 	from BalanceSheetGheyreTalfighiCategurbalancesheet_bourse hc
 	left join BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse cf on hc.instrumentId = cf.instrumentId 
 	--left join BalanceSheetGheyreTalfighiCategurCashflow_Bourse caf on hc.instrumentId = caf.instrumentId 

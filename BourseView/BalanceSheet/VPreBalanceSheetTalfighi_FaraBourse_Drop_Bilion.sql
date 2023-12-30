@@ -1,4 +1,7 @@
 
+
+
+
 --select * from [dbo].[BalanceSheetTalfighiCategurbalancesheet_Bourse]
 CREATE     view [dbo].[VPreBalanceSheetTalfighi_FaraBourse_Drop_Bilion]
 	as
@@ -108,26 +111,33 @@ CREATE     view [dbo].[VPreBalanceSheetTalfighi_FaraBourse_Drop_Bilion]
 ,cast(hc.['جمع حقوق صاحبان سهام']/10000000000 as decimal(20,0)) ['جمع حقوق صاحبان سهام']
 ,cast(hc.['ذخیره مزایای پایان خدمت']/10000000000 as decimal(20,0)) ['ذخیره مزایای پایان خدمت']
 ,cast(hc.['ذخایر و سایر بدهی ها']/10000000000 as decimal(20,0)) ['ذخایر و سایر بدهی ها']
-
+,cast(ics.['سود (زیان) خالص']/10000000000 as decimal(20,0)) ['سود (زیان) خالص']
 
 	from BalanceSheetTalfighiCategurbalancesheet_FaraBourse hc
 	join BalanceSheetTalfighiCategurincomestatement_FaraBourse ics on hc.instrumentId = ics.instrumentId
 	join BalanceSheetTalfighiCategurCashflow_FaraBourse cf on cf.instrumentId = hc.instrumentId
 	 
-
-	
-	where not exists(select 1 from BalanceSheetTalfighiCategurbalancesheet_farabourse h where hc.instrumentId = h.instrumentId and h.day > hc.day)
-	and not exists(select 1 from BalanceSheetTalfighiCategurbalancesheet_farabourse h where hc.instrumentId = h.instrumentId and h.createdate > hc.createdate)
+	where 
+	--not exists(select 1 from BalanceSheetTalfighiCategurbalancesheet_farabourse h where hc.instrumentId = h.instrumentId and h.day > hc.day)	and 
+	not exists(select 1 from BalanceSheetTalfighiCategurbalancesheet_farabourse h where hc.instrumentId = h.instrumentId and h.createdate > hc.createdate)
 	and not exists(select 1 from BalanceSheetTalfighiCategurbalancesheet_farabourse h where hc.instrumentId = h.instrumentId and h.[تاریخ انتشار] > hc.[تاریخ انتشار])
-	and  cast(hc.[تاریخ انتشار] as date)   > dateadd(day, -500, getdate()) 
-	and not exists(select 1 from BalanceSheetTalfighiCategurIncomeStatement_farabourse h where ics.instrumentId = h.instrumentId and h.day > ics.day)
+	and not exists(select 1 from BalanceSheetTalfighiCategurbalancesheet_farabourse h where hc.instrumentId = h.instrumentId and h.[روز آخر سال مالی] > hc.[روز آخر سال مالی])
+	and not exists(select 1 from BalanceSheetTalfighiCategurbalancesheet_farabourse h where hc.instrumentId = h.instrumentId and h.[سال مالی] > hc.[سال مالی])
+	and  cast(hc.[تاریخ انتشار] as date)  > dateadd(day, -500, getdate())
+
+	--and not exists(select 1 from BalanceSheetTalfighiCategurIncomeStatement_bourse h where ics.instrumentId = h.instrumentId and h.day > ics.day)
 	and not exists(select 1 from BalanceSheetTalfighiCategurIncomeStatement_farabourse h where ics.instrumentId = h.instrumentId and h.createdate > ics.createdate)
 	and not exists(select 1 from BalanceSheettalfighiCategurIncomeStatement_farabourse h where ics.instrumentId = h.instrumentId and h.[تاریخ انتشار] > ics.[تاریخ انتشار])
-	and  cast(ics.[تاریخ انتشار] as date)   > dateadd(day, -500, getdate()) 
-		and not exists(select 1 from BalanceSheetTalfighiCategurCashFlow_farabourse h where cf.instrumentId = h.instrumentId and h.day > cf.day)
+	and not exists(select 1 from BalanceSheettalfighiCategurIncomeStatement_farabourse h where ics.instrumentId = h.instrumentId and h.[روز آخر سال مالی] > ics.[روز آخر سال مالی])
+	and not exists(select 1 from BalanceSheettalfighiCategurIncomeStatement_farabourse h where ics.instrumentId = h.instrumentId and h.[سال مالی] > ics.[سال مالی])
+	and  cast(ics.[تاریخ انتشار] as date)  > dateadd(day, -500, getdate()) 
+
+	--and not exists(select 1 from BalanceSheetTalfighiCategurCashFlow_bourse h where cf.instrumentId = h.instrumentId and h.day > cf.day)
 	and not exists(select 1 from BalanceSheetTalfighiCategurCashFlow_farabourse h where cf.instrumentId = h.instrumentId and h.createdate > cf.createdate)
 	and not exists(select 1 from BalanceSheettalfighiCategurCashFlow_farabourse h where cf.instrumentId = h.instrumentId and h.[تاریخ انتشار] > cf.[تاریخ انتشار])
-	and  cast(cf.[تاریخ انتشار] as date)   > dateadd(day, -500, getdate()) 
+	and not exists(select 1 from BalanceSheettalfighiCategurCashFlow_farabourse h where cf.instrumentId = h.instrumentId and h.[روز آخر سال مالی] > cf.[روز آخر سال مالی])
+	and not exists(select 1 from BalanceSheettalfighiCategurCashFlow_farabourse h where cf.instrumentId = h.instrumentId and h.[سال مالی] > cf.[سال مالی])
+	and  cast(cf.[تاریخ انتشار] as date) > dateadd(day, -500, getdate()) 
 	--and hc.instrumentid in (select ticker from vcompany)
 	--and ics.instrumentid in (select ticker from vcompany)
 	--and cf.instrumentid in (select ticker from vcompany)

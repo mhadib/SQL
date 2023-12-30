@@ -1,5 +1,6 @@
 
-CREATE view [dbo].[VPreBalanceSheetGheyreTalfighi_FaraBourse_Drop_Bilion]
+
+CREATE   view [dbo].[VPreBalanceSheetGheyreTalfighi_FaraBourse_Drop_Bilion]
 as 
 select distinct hc.InstrumentId,hc.symbolFA,
 	replace(replace(replace(hc.[day],N'''',N''),N'[',N''),N']',N'')day,
@@ -73,20 +74,33 @@ cast(hc.['جمع بدهیهای جاری و غیر جاری']/10000000000 as dec
 ,cast(hc.['جمع حقوق صاحبان سهام']/10000000000 as decimal(20,0)) ['جمع حقوق صاحبان سهام']
 ,cast(hc.['ذخیره مزایای پایان خدمت']/10000000000 as decimal(20,0)) ['ذخیره مزایای پایان خدمت']
 ,cast(hc.['ذخایر و سایر بدهی ها']/10000000000 as decimal(20,0)) ['ذخایر و سایر بدهی ها']
-
---cast((['جمع بدهیهای جاری'] / ((['فروش']/[سال مالی]*12)+0.00000001))/10000000000 as decimal(30,8))[نسبت بدهی به فروش]
+, cast(hc.['بدهی بابت بیمه عمر و مدیریت سرمایه'] /10000000000 as decimal(20,0)) ['بدهی بابت بیمه عمر و مدیریت سرمایه']
+, cast(hc.['مطالبات از بیمه گران و بیمه‌گران اتکایی'] /10000000000 as decimal(20,0)) ['مطالبات از بیمه گران و بیمه‌گران اتکایی']
+, cast(hc.['مطالبات از بیمه‌گذاران و نمایندگان'] /10000000000 as decimal(20,0)) ['مطالبات از بیمه‌گذاران و نمایندگان']
+, cast(hc.['سهم بیمه گران اتکایی از ذخایر فنی'] /10000000000 as decimal(20,0)) ['سهم بیمه گران اتکایی از ذخایر فنی']
+, cast(hc.['بدهی به بیمه‌گذاران و نمایندگان'] /10000000000 as decimal(20,0)) ['بدهی به بیمه‌گذاران و نمایندگان']
+, cast(hc.['بدهی به بیمه‌گران و بیمه‌گران اتکایی'] /10000000000 as decimal(20,0)) ['بدهی به بیمه‌گران و بیمه‌گران اتکایی']
+, cast(hc.['ذخیره خسارت معوق '] /10000000000 as decimal(20,0)) ['ذخیره خسارت معوق ']
+, cast(hc.['سایر ذخایر فنی'] /10000000000 as decimal(20,0)) ['سایر ذخایر فنی']
+, cast(hc.['ذخیره ریسک‌های منقضی نشده'] /10000000000 as decimal(20,0)) ['ذخیره ریسک‌های منقضی نشده']
+, cast(cf.['سود (زیان) خالص']/10000000000 as decimal(20,0)) ['سود (زیان) خالص']
 
 
 	from BalanceSheetGheyreTalfighiCategurbalancesheet_FaraBourse hc 
 	left join BalanceSheetGheyreTalfighiCategurIncomeStatement_FaraBourse cf on hc.instrumentId = cf.instrumentId 
-	where not exists(select 1 from BalanceSheetGheyreTalfighiCategurbalancesheet_FaraBourse h where hc.instrumentId = h.instrumentId and h.day > hc.day)
+	where not exists(select 1 from BalanceSheetGheyreTalfighiCategurbalancesheet_FaraBourse h where hc.instrumentId = h.instrumentId and h.[تاریخ انتشار] > hc.[تاریخ انتشار])
 	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurbalancesheet_FaraBourse h where hc.instrumentId = h.instrumentId and h.createdate > hc.createdate)
-	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurbalancesheet_FaraBourse h where hc.instrumentId = h.instrumentId and h.[تاریخ انتشار] > hc.[تاریخ انتشار])
-	and  cast(hc.[تاریخ انتشار] as date)  > dateadd(day, -365, getdate()) and
-	not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_FaraBourse h where cf.instrumentId = h.instrumentId and h.day > cf.day)
+	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurbalancesheet_FaraBourse h where hc.instrumentId = h.instrumentId and h.[روز آخر سال مالی] > hc.[روز آخر سال مالی])
+	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurbalancesheet_bourse h where hc.instrumentId = h.instrumentId and h.[سال مالی] > hc.[سال مالی])
+
+	and  cast(hc.[تاریخ انتشار] as date)  > dateadd(day, -365, getdate()) 
+	
+	and	not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_FaraBourse h where cf.instrumentId = h.instrumentId and h.[تاریخ انتشار] > cf.[تاریخ انتشار])
 	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_FaraBourse h where cf.instrumentId = h.instrumentId and h.[سال مالی] > cf.[سال مالی])
 	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_FaraBourse h where cf.instrumentId = h.instrumentId and h.createdate > cf.createdate)
-	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_FaraBourse h where cf.instrumentId = h.instrumentId and h.[تاریخ انتشار] > cf.[تاریخ انتشار])
+	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_FaraBourse h where cf.instrumentId = h.instrumentId and h.[روز آخر سال مالی] > cf.[روز آخر سال مالی])
+	and not exists(select 1 from BalanceSheetGheyreTalfighiCategurIncomeStatement_Farabourse h where cf.instrumentId = h.instrumentId and h.[سال مالی] > cf.[سال مالی])
+
 	and  cast(cf.[تاریخ انتشار] as date)  > dateadd(day, -365, getdate())
 	
 	and hc.instrumentid in (select ticker from vcompany)

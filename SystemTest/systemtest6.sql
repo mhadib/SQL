@@ -2,6 +2,7 @@
 
 
 
+
 CREATE   view [dbo].[systemtest6] 
 as 
 with cte6 as (
@@ -48,12 +49,7 @@ from [P_CalcDayCountInSoodSherkatHa]
 
 
 union all 
-select N'BourseViewUSA.py' [اولین توضیح], N'هنگام درج داده در اس کیو ال سرور از نام ستون ها در سایت بورس ویو استفاده شد' [توضیح دوم], N'' [توضیح سوم],N''[توضیح چهارم],N''[توضیح پنجم],N''[توضیح ششم],N''[توضیح هفتم],N''[توضیح هشتم],N''[توضیح نهم], N'BourseViewUSA' [به کجا ارسال میشود], N'BourseViewUSA' ReportName,cast(CNT365 as nvarchar(20)) CNT365,cast(CNT90 as nvarchar(20)) CNT90,cast(CNT30 as nvarchar(20)) CNT30,cast(CNT14 as nvarchar(20)) CNT14,cast(CNT7 as nvarchar(20)) CNT7,cast(CNT3 as nvarchar(20)) CNT3,cast(CNT180 as nvarchar(20)) CNT180,(select top 1 cast(createdate as nvarchar(20)) from BoursViewUSA order by createdate desc) [آخرین زمان بروز رسانی],N'' [Mostanadat], N'https://www.tradingview.com/markets/stocks-usa/market-movers-highest-net-income' [کجا را میخواند], '' [کجا را میخواند دوم], N'' [کاربرد]
-from [P_CalcDayCountInBoursViewUSA]
 
-
-
-union all 
 select N'توضیح اول', N'توضیح دوم',N'توضیح سوم', N'توضیح چهارم',N'توضیح پنجم',N'توضیح ششم',N'توضیح هفتم',N'توضیح هشتم', N'نرخ ارز', N'آخرین بروز رسانی', N'به کجا ارسال میشود', N'به کجا ارسال میشود',N'به کجا ارسال میشود',N'به کجا ارسال میشود',N'به کجا ارسال میشود',N'به کجا ارسال میشود',N'',N'به کجا ارسال میشود',N'به کجا ارسال میشود',N'به کجا ارسال میشود', N'به کجا ارسال میشود', '' [کجا را میخواند دوم], N'' [کاربرد]
 union all 
 select N'[CNY-HML] در صد ضرب میشود', N'سعی هزار تقسیم بر 1000000 میشود', N'هزار تقسیم بر هزار میشود', N'USD-HML ضربدر 1000 میشود',N'HML ضربدر 1000 میشود',N'میلیارد ضربدر 1000 میشود',N'نسبت نرخ برابری ارز به دلار از این جهت که دلار در صورت باشد یا در مخرج در ستون دلار دیوایدز مشخص شده است که در محاسبات تبدیل نرخ ارز از این ستون حتما باید استفاده شود',N'توضیح هشتم',N'vtgjuCurrency',cast(max(currentDate)as nvarchar(100)) , N'VTolidNakhalesDakheli', N'VMovazeneTejari' , N'VNaghdinegi',N'VKasriHesabeJari',N'VBankMarkazi',N'VSarmayeGozariKhareji',N'vVaamBeBakhsheKhosusi',N'',N'VZakhayerArzi',N'VGardeshSarmaye',N'VBedehiKhareji', '' [کجا را میخواند دوم], N'' [کاربرد]

@@ -33,7 +33,7 @@ and BalanceSheetGheyreTalfighiCategurbalancesheet_bourse.[day] = b2.[day]
 and BalanceSheetGheyreTalfighiCategurbalancesheet_bourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetGheyreTalfighiCategurbalancesheet_bourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetGheyreTalfighiCategurbalancesheet_bourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetGheyreTalfighiCategurbalancesheet_bourse.CreateDate > b2.CreateDate
+and BalanceSheetGheyreTalfighiCategurbalancesheet_bourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 
@@ -45,7 +45,7 @@ and BalanceSheetGheyreTalfighiCategurbalancesheet_farabourse.[day] = b2.[day]
 and BalanceSheetGheyreTalfighiCategurbalancesheet_farabourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetGheyreTalfighiCategurbalancesheet_farabourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetGheyreTalfighiCategurbalancesheet_farabourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetGheyreTalfighiCategurbalancesheet_farabourse.CreateDate > b2.CreateDate
+and BalanceSheetGheyreTalfighiCategurbalancesheet_farabourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 
@@ -57,7 +57,7 @@ and BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse.[day] = b2.[day]
 and BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse.CreateDate > b2.CreateDate
+and BalanceSheetGheyreTalfighiCategurIncomeStatement_bourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 
@@ -69,7 +69,7 @@ and BalanceSheetGheyreTalfighiCategurIncomeStatement_farabourse.[day] = b2.[day]
 and BalanceSheetGheyreTalfighiCategurIncomeStatement_farabourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetGheyreTalfighiCategurIncomeStatement_farabourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetGheyreTalfighiCategurIncomeStatement_farabourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetGheyreTalfighiCategurIncomeStatement_farabourse.CreateDate > b2.CreateDate
+and BalanceSheetGheyreTalfighiCategurIncomeStatement_farabourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 
@@ -82,7 +82,7 @@ and BalanceSheetGheyreTalfighiCategurCashFlow_bourse.[day] = b2.[day]
 and BalanceSheetGheyreTalfighiCategurCashFlow_bourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetGheyreTalfighiCategurCashFlow_bourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetGheyreTalfighiCategurCashFlow_bourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetGheyreTalfighiCategurCashFlow_bourse.CreateDate > b2.CreateDate
+and BalanceSheetGheyreTalfighiCategurCashFlow_bourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 
@@ -94,7 +94,7 @@ and BalanceSheetGheyreTalfighiCategurCashflow_FaraBourse.[day] = b2.[day]
 and BalanceSheetGheyreTalfighiCategurCashflow_FaraBourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetGheyreTalfighiCategurCashflow_FaraBourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetGheyreTalfighiCategurCashflow_FaraBourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetGheyreTalfighiCategurCashflow_FaraBourse.CreateDate > b2.CreateDate
+and BalanceSheetGheyreTalfighiCategurCashflow_FaraBourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 
@@ -107,7 +107,7 @@ and BalanceSheetTalfighiCategurbalancesheet_bourse.[day] = b2.[day]
 and BalanceSheetTalfighiCategurbalancesheet_bourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetTalfighiCategurbalancesheet_bourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetTalfighiCategurbalancesheet_bourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetTalfighiCategurbalancesheet_bourse.CreateDate > b2.CreateDate
+and BalanceSheetTalfighiCategurbalancesheet_bourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 
@@ -119,7 +119,7 @@ and BalanceSheetTalfighiCategurbalancesheet_farabourse.[day] = b2.[day]
 and BalanceSheetTalfighiCategurbalancesheet_farabourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetTalfighiCategurbalancesheet_farabourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetTalfighiCategurbalancesheet_farabourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetTalfighiCategurbalancesheet_farabourse.CreateDate > b2.CreateDate
+and BalanceSheetTalfighiCategurbalancesheet_farabourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 
@@ -131,7 +131,7 @@ and BalanceSheetTalfighiCategurIncomeStatement_bourse.[day] = b2.[day]
 and BalanceSheetTalfighiCategurIncomeStatement_bourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetTalfighiCategurIncomeStatement_bourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetTalfighiCategurIncomeStatement_bourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetTalfighiCategurIncomeStatement_bourse.CreateDate > b2.CreateDate
+and BalanceSheetTalfighiCategurIncomeStatement_bourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 
@@ -143,7 +143,7 @@ and BalanceSheetTalfighiCategurIncomeStatement_farabourse.[day] = b2.[day]
 and BalanceSheetTalfighiCategurIncomeStatement_farabourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetTalfighiCategurIncomeStatement_farabourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetTalfighiCategurIncomeStatement_farabourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetTalfighiCategurIncomeStatement_farabourse.CreateDate > b2.CreateDate
+and BalanceSheetTalfighiCategurIncomeStatement_farabourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 
@@ -156,7 +156,7 @@ and BalanceSheetTalfighiCategurCashFlow_bourse.[day] = b2.[day]
 and BalanceSheetTalfighiCategurCashFlow_bourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetTalfighiCategurCashFlow_bourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetTalfighiCategurCashFlow_bourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetTalfighiCategurCashFlow_bourse.CreateDate > b2.CreateDate
+and BalanceSheetTalfighiCategurCashFlow_bourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 
@@ -168,7 +168,7 @@ and BalanceSheetTalfighiCategurCashflow_FaraBourse.[day] = b2.[day]
 and BalanceSheetTalfighiCategurCashflow_FaraBourse.[سال مالی] = b2.[سال مالی]
 and BalanceSheetTalfighiCategurCashflow_FaraBourse.[ماه مالی] = b2.[ماه مالی]
 and BalanceSheetTalfighiCategurCashflow_FaraBourse.[تاریخ انتشار] = b2.[تاریخ انتشار]
-and BalanceSheetTalfighiCategurCashflow_FaraBourse.CreateDate > b2.CreateDate
+and BalanceSheetTalfighiCategurCashflow_FaraBourse.CreateDate < b2.CreateDate
 )
 or instrumentId not in (select ticker from vCompany)
 end
